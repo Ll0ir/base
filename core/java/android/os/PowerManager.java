@@ -236,7 +236,7 @@ public class PowerManager
 
         Runnable mReleaser = new Runnable() {
             public void run() {
-                release();
+                safeRelease();
             }
         };
 	
@@ -247,6 +247,7 @@ public class PowerManager
         boolean mRefCounted = true;
         boolean mHeld = false;
         WorkSource mWorkSource;
+        Object mSafeReleaseLock;
 
         WakeLock(int flags, String tag)
         {
@@ -264,6 +265,7 @@ public class PowerManager
             mFlags = flags;
             mTag = tag;
             mToken = new Binder();
+            mSafeReleaseLock = new Object();
         }
 
         /**
@@ -323,6 +325,26 @@ public class PowerManager
         public void release() {
             release(0);
         }
+
+        /**
+         * Release your claim to the CPU or screen being on.
+         * Checks atomically if the wakelock is still held before releasing it.
+         * This method should be used every time there's a possibility that a
+         * timeout release happens at the same time as a manual release.
+         *
+         * <p>
+         * It may turn off shortly after you release it, or it may not if there
+         * are other wake locks held.
+         *
+         * {@hide}
+         */
+        public void safeRelease() {
+            synchronized(mSafeReleaseLock) {
+                if (isHeld())
+                    release(0);
+            }
+        }
+
 
         /**
          * Release your claim to the CPU or screen being on.
