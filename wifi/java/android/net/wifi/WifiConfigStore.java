@@ -228,6 +228,10 @@ class WifiConfigStore {
 
         addOrUpdateNetworkNative(config);
         mWifiNative.saveConfig();
+        // Set AP_SCAN = 2 in ad-hoc mode.
+        if (config.mode == WifiConfiguration.Mode.ADHOC) {
+            mWifiNative.setScanResultHandling(2);
+        }
 
         /* Enable the given network while disabling all other networks */
         enableNetworkWithoutBroadcast(netId, true);
@@ -985,6 +989,16 @@ class WifiConfigStore {
 
         setVariables: {
 
+            // Infrastructure is default and does not need to be set.
+            if (config.mode == WifiConfiguration.Mode.ADHOC &&
+                    !mWifiNative.setNetworkVariable(
+                        netId,
+                        WifiConfiguration.Mode.varName,
+                        Integer.toString(config.mode))) {
+                loge("failed to set mode: "+config.mode);
+                break setVariables;
+            }
+
             if (config.SSID != null &&
                     !mWifiNative.setNetworkVariable(
                         netId,
@@ -1315,7 +1329,16 @@ class WifiConfigStore {
          */
         String value;
 
+        value = mWifiNative.getNetworkVariable(netId, WifiConfiguration.Mode.varName);
+        if (!TextUtils.isEmpty(value)) {
+            try {
+                config.mode = Integer.parseInt(value);
+            } catch (NumberFormatException ignore) {
+            }
+        }
+
         value = mWifiNative.getNetworkVariable(netId, WifiConfiguration.ssidVarName);
+
         if (!TextUtils.isEmpty(value)) {
             config.SSID = value;
         } else {

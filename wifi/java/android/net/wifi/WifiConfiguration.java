@@ -129,6 +129,23 @@ public class WifiConfiguration implements Parcelable {
             engine, engine_id, key_id, ca_cert };
 
     /**
+     * Recognized modes of operation.
+     * {@hide}
+     */
+    public static class Mode {
+        private Mode() { }
+
+        /** A station in an infrastructure network */
+        public static final int INFRASTRUCTURE = 0;
+        /** A member of an ad-hoc network */
+        public static final int ADHOC = 1;
+
+        public static final String varName = "mode";
+
+        public static final String[] strings = { "infrastructure", "ad-hoc" };
+    }
+
+    /**
      * Recognized key management schemes.
      */
     public static class KeyMgmt {
@@ -278,6 +295,13 @@ public class WifiConfiguration implements Parcelable {
     public int disableReason;
 
     /**
+     * The operating mode of this network.
+     * Defaults to Mode.INFRASTRUCTURE.
+     * @hide
+     */
+    public int mode;
+
+    /**
      * The network's SSID. Can either be an ASCII string,
      * which must be enclosed in double quotation marks
      * (e.g., {@code "MyNetwork"}, or a string of
@@ -401,11 +425,12 @@ public class WifiConfiguration implements Parcelable {
 
     public WifiConfiguration() {
         networkId = INVALID_NETWORK_ID;
+        disableReason = DISABLED_UNKNOWN_REASON;
+        mode = Mode.INFRASTRUCTURE;
         SSID = null;
         BSSID = null;
         priority = 0;
         hiddenSSID = false;
-        disableReason = DISABLED_UNKNOWN_REASON;
         allowedKeyManagement = new BitSet();
         allowedProtocols = new BitSet();
         allowedAuthAlgorithms = new BitSet();
@@ -430,8 +455,11 @@ public class WifiConfiguration implements Parcelable {
         } else if (this.status == WifiConfiguration.Status.DISABLED) {
             sbuf.append("- DSBLE: ").append(this.disableReason).append(" ");
         }
-        sbuf.append("ID: ").append(this.networkId).append(" SSID: ").append(this.SSID).
-                append(" BSSID: ").append(this.BSSID).append(" PRIO: ").append(this.priority).
+        sbuf.append("ID: ").append(this.networkId).
+                append(" Mode: ").append(Mode.strings[this.mode]).
+                append(" SSID: ").append(this.SSID).
+                append(" BSSID: ").append(this.BSSID).
+                append(" PRIO: ").append(this.priority).
                 append('\n');
         sbuf.append(" KeyMgmt:");
         for (int k = 0; k < this.allowedKeyManagement.size(); k++) {
@@ -568,6 +596,7 @@ public class WifiConfiguration implements Parcelable {
             networkId = source.networkId;
             status = source.status;
             disableReason = source.disableReason;
+            mode = source.mode;
             SSID = source.SSID;
             BSSID = source.BSSID;
             preSharedKey = source.preSharedKey;
@@ -599,6 +628,7 @@ public class WifiConfiguration implements Parcelable {
         dest.writeInt(networkId);
         dest.writeInt(status);
         dest.writeInt(disableReason);
+        dest.writeInt(mode);
         dest.writeString(SSID);
         dest.writeString(BSSID);
         dest.writeString(preSharedKey);
@@ -630,6 +660,7 @@ public class WifiConfiguration implements Parcelable {
                 config.networkId = in.readInt();
                 config.status = in.readInt();
                 config.disableReason = in.readInt();
+                config.mode = in.readInt();
                 config.SSID = in.readString();
                 config.BSSID = in.readString();
                 config.preSharedKey = in.readString();
