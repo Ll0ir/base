@@ -1040,7 +1040,6 @@ class MountService extends IMountService.Stub
             /*
              * USB mass storage disconnected while enabled
              */
-<<<<<<< HEAD
             new Thread() {
                 @Override
                 public void run() {
@@ -1060,7 +1059,6 @@ class MountService extends IMountService.Stub
                     } catch (Exception ex) {
                         Slog.w(TAG, "Failed to mount media on UMS enabled-disconnect", ex);
                     }
-=======
             try {
                 int rc;
                 Slog.w(TAG, "Disabling UMS after cable disconnect");
@@ -1069,7 +1067,6 @@ class MountService extends IMountService.Stub
                     Slog.e(TAG, String.format(
                             "Failed to remount {%s} on UMS enabled-disconnect (%d)",
                                     path, rc));
->>>>>>> 22e21ca... Mount state of sd card not correct
                 }
             } catch (Exception ex) {
                 Slog.w(TAG, "Failed to mount media on UMS enabled-disconnect", ex);
