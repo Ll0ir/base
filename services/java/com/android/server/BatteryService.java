@@ -241,13 +241,19 @@ class BatteryService extends Binder {
         // if platform consuming more than what is being supplied at 0% battery capacity.
         // wait until the system has booted before attempting to display the shutdown dialog.
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (mBatteryLevel == 0 && (!isPowered() || isDischarging()) && ActivityManagerNative.isSystemReady()) {
 =======
+=======
+>>>>>>> ec38d72... Shutdown when capacity is 0% and non charging or when battery is dead
         // Also shutdown if battery is reported to be 'dead' independent of
         // battery level and power supply.
         if (((mBatteryLevel == 0 && !isPowered()) ||
              mBatteryHealth == BatteryManager.BATTERY_HEALTH_DEAD) &&
             ActivityManagerNative.isSystemReady()) {
+<<<<<<< HEAD
+>>>>>>> ec38d72... Shutdown when capacity is 0% and non charging or when battery is dead
+=======
 >>>>>>> ec38d72... Shutdown when capacity is 0% and non charging or when battery is dead
             Intent intent = new Intent(Intent.ACTION_REQUEST_SHUTDOWN);
             intent.putExtra(Intent.EXTRA_KEY_CONFIRM, false);
