@@ -21,12 +21,10 @@ import com.android.internal.R;
 import com.android.internal.app.ThemeUtils;
 
 import android.app.ActivityManager;
-<<<<<<< HEAD
-=======
+
 import android.content.BroadcastReceiver;
 import android.database.ContentObserver;
 import android.content.ContentResolver;
->>>>>>> dc26621... Allow theming of the lockscreen
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
