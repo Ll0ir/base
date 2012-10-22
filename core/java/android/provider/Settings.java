@@ -2399,18 +2399,18 @@ public final class Settings {
         public static final String NAVIGATION_BAR_SHOW = "navigation_bar_show";
 
         /**
-         * Enable Menu key
+         * Enable Power Key
          *
          * @hide
          */
-        public static final String KEY_MENU_ENABLED = "key_menu_enabled";
+        public static final String KEY_POWER_ENABLED = "key_power_enabled";
 
         /**
-         * Enable Back key
+         * Enable Search key
          *
          * @hide
          */
-        public static final String KEY_BACK_ENABLED = "key_back_enabled";
+        public static final String KEY_SEARCH_ENABLED = "key_search_enabled";
 
         /**
          * Enable Home key
