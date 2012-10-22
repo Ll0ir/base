@@ -2385,10 +2385,9 @@ public final class Settings {
         public static final String WIDGET_BUTTONS_TABLET = "expanded_widget_buttons_tablet";
 
         /**
-<<<<<<< HEAD
-         * Navigation controls to Use
+       * Navigation controls to Use
          *
-=======
+
          * Navigation bar, whether to show or hide
          * @hide
          */
@@ -2403,7 +2402,7 @@ public final class Settings {
 
         /**
          * Navigation bar, separate menu button in TabUI, whether to show or hide
->>>>>>> ffadb45... Framework: NavBar transparency (1/2)
+         *            
          * @hide
          */
         public static final String NAV_BUTTONS = "nav_buttons";
