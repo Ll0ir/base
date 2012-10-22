@@ -3937,18 +3937,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return 0;
         }
 
-        //Ignore Power key if it is disabled in Settings
-        if (scanCode != 0 && keyCode == KeyEvent.KEYCODE_POWER) {
-            if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.KEY_POWER_ENABLED, 1) == 0) {
-                Log.i(TAG, "Ignoring Power Key: Disabled via Settings");
+        //Ignore Menu key if it is disabled in Settings
+        if (scanCode != 0 && keyCode == KeyEvent.KEYCODE_MENU) {
+            if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.KEY_MENU_ENABLED, 1) == 0) {
+                Log.i(TAG, "Ignoring Menu Key: Disabled via Settings");
                 return 0;
             }
         }
 
-        //Ignore Search key if it is disabled in Settings
-        if (scanCode != 0 && keyCode == KeyEvent.KEYCODE_SEARCH) {
-            if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.KEY_SEARCH_ENABLED, 1) == 0) {
-                Log.i(TAG, "Ignoring Search Key: Disabled via Settings");
+        //Ignore Back key if it is disabled in Settings
+        if (scanCode != 0 && keyCode == KeyEvent.KEYCODE_BACK) {
+            if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.KEY_BACK_ENABLED, 1) == 0) {
+                Log.i(TAG, "Ignoring Menu Key: Disabled via Settings");
                 return 0;
             }
         }
