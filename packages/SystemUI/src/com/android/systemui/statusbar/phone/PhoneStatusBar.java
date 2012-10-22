@@ -303,10 +303,13 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
+<<<<<<< HEAD
+=======
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TRANSPARENCY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAV_BAR_TRANSPARENCY), false, this);
+>>>>>>> ffadb45... Framework: NavBar transparency (1/2)
             update();
         }
 
@@ -322,9 +325,11 @@ public class PhoneStatusBar extends BaseStatusBar {
                     Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
             mBrightnessControl = !autoBrightness && Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+<<<<<<< HEAD
+=======
             setStatusBarParams(mStatusBarView);
             setNavigationBarParams();
-
+>>>>>>> ffadb45... Framework: NavBar transparency (1/2)
         }
     }
 
@@ -2671,8 +2676,11 @@ public class PhoneStatusBar extends BaseStatusBar {
                 (mCurrentTheme == null || !mCurrentTheme.equals(newTheme))) {
             mCurrentTheme = (CustomTheme)newTheme.clone();
             recreateStatusBar();
+<<<<<<< HEAD
+=======
             setStatusBarParams(mStatusBarView);
             setNavigationBarParams();
+>>>>>>> ffadb45... Framework: NavBar transparency (1/2)
         } else {
 
             if (mClearButton instanceof TextView) {
