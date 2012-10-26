@@ -580,6 +580,7 @@ public class NotificationManagerService extends INotificationManager.Stub
                 mScreenOn = false;
                 mWasScreenOn = true;
                 updateLightsLocked();
+                updateNotificationPulse();
             } else if (action.equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
                 mInCall = (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
                         TelephonyManager.EXTRA_STATE_OFFHOOK));
