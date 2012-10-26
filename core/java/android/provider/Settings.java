@@ -2664,6 +2664,17 @@ public final class Settings {
          * @hide
          */
         public static final String WEATHER_UPDATE_INTERVAL = "weather_update_interval";
+        public static final String STATUSBAR_SETTINGS_BEHAVIOR = "statusbar_settings_behavior";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_TOGGLES_AUTOHIDE = "statusbar_toggles_autohide";
+
+        /**
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_SLIDER = "statusbar_brightness_slider";
 
         /**
          * Use Metric measurements (celcius, km/h) for weather data
